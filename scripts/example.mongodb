@@ -1,0 +1,119 @@
+// MONGODB BASIC COMMANDS
+
+// List created databases
+show dbs
+
+// Create a new database with name dev_course
+use dev_course
+
+// Show database that I'm using
+db
+
+// Switch to another database ex: to course_production
+use course_production
+
+// List all collections save 
+show collections
+
+// -------------------------------------------- Create -------------------------------------------------------- //
+
+// Create a new collection with name courses
+// It's necessary set the first register 'cause mongo don't create this collection as with a empty documents
+// The '_id' is a required and uniq field, if you dont send on create, Mongo'll asign this value and return on the callback
+db.courses.insertOne({ 
+  _id: 1, 
+  name: 'Desarrollo Web', 
+  tags: ['web', 'mongodb', 'nodejs', 'js'],
+  price: 150000,
+  status: 'available',
+  registre_at: new Date('2020-03-01T08:00:00Z') 
+})
+
+// Bulk insert on collection ex to courses
+db.courses.insertMany([
+  { _id: 3,  name: 'Ingles 1',  tags: ['lenguaje', 'mongodb', 'nodejs', 'js'], price: 175000, status: 'available', registre_at: new Date('2020-06-01T08:00:00Z') },
+  { _id: 4,  name: 'Ciencia de Datos',  tags: ['python', 'sql', 'nosql'], price: 138000, status: 'no available', registre_at: new Date('2020-07-01T08:00:00Z') },
+  { _id: 5,  name: 'Azure and AWS',  tags: ['aws', 'azure', 'js'], price: 420000, status: 'available', registre_at: new Date('2028-08-01T08:00:00Z') },
+  { _id: 6,  name: 'Copy Write',  tags: ['letura', 'textos', 'add'], price: 250000, status: 'no available', registre_at: new Date('2020-09-01T08:00:00Z') },
+  { _id: 7,  name: 'Sprintboots',  tags: ['java web', 'java', 'js'], price: 420000, status: 'available', registre_at: new Date('2021-04-01T08:00:00Z') },
+  { _id: 8,  name: 'Diseño web',  tags: ['js', 'html', 'css',], price: 960000, status: 'no available', registre_at: new Date('2021-07-01T08:00:00Z') },
+  { _id: 9,  name: 'Ruby on Rails',  tags: ['rails', 'ruby', 'sql', 'postgress'], price: 320000, status: 'available', registre_at: new Date('2021-03-01T08:00:00Z') },
+  { _id: 10,  name: 'SQL',  tags: ['mysql', 'sql', 'relational database', 'postgress'], price: 630000, status: 'no available', registre_at: new Date('2021-02-01T08:00:00Z') }
+]);
+
+// Create another case without _id field
+db.courses.insertOne({ 
+  name: 'Machine Learning', 
+  tags: ['web', 'mongodb', 'nodejs', 'js'],
+  price: 1200000,
+  status: 'available',
+  registre_at: new Date('2021-08-01T08:00:00Z') 
+})
+
+// Find by _id when this fild was created authomatic
+
+
+// If you want to show all available commands on collection used.
+db.courses.help()
+
+// ------------------------------------------------ Read ----------------------------------------------------------------- //
+
+// Find register by item search
+// Use pretty to show the query response most pretty on the console
+db.courses.find( {status: 'available'} )
+
+// Use count to show quantity of register found
+db.courses.find( {status: 'available'} ).count()
+
+// Find one document this will be appear order by _id "index"
+db.courses.findOne( {status: 'available'} )
+
+// Find by _id field
+db.courses.findOne( {_id: 5 } )
+
+// Find by _id when this fild was created authomatic
+db.courses.findOne( {_id: objectId("") } )
+
+// select fields that I need on a query
+db.courses.findOne( {_id: 5 }, { name: 1, tags: 1 } )
+
+// select fields that I need on a query without _id
+db.courses.findOne( {_id: 5 }, { _id: 0, name: 1, tags: 1 } )
+
+
+// Operators ................ https://docs.mongodb.com/manual/reference/operator/query/
+
+// Using less and equial than price value using 'and' operator
+db.courses.find( { price: { $lte: 420000 } } )
+
+// Using less than price value using 'or'
+db.courses.find( { $or: [ { status: 'no available' }, { price: { $lt: 420000 } } )
+
+// Filter by tag array
+db.courses.find( { tags: ['js', 'html', 'css',] } )
+
+// Filter by specific value on array
+db.courses.find( { tags: { $eq: 'js' } } )
+
+// Size of tags
+db.courses.find( { tags: {$size: 2} } )
+
+// ------------------------------------------------ Update ----------------------------------------------------------------- //
+
+// Update first register that fount by filter and set new data to fields 
+db.courses.updateOne( {status: 'available'}, { $set: { "registre_at": new Date('2021-12-12T08:00:00Z') } })
+
+// Update all register that match with the query
+db.courses.updateMany( {status: 'available'}, { $set: { "price": 55000 } })  
+
+// ------------------------------------------------ Delete ----------------------------------------------------------------- //
+
+// Delete first register that fount by filter
+db.courses.deleteOne( { _id: 1 } )
+
+// Delete all register that match with the query
+db.courses.deleteMany( { status: 'no available' } )
+
+// Delete all documents on collection
+db.courses.deleteMany( {} )
+

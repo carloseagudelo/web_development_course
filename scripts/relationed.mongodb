@@ -1,0 +1,36 @@
+// Create a first collection
+
+db.libraries.insertMany([
+  { _id: 1, name: "Libreria Medellin", founded: 1980, country: "co" },
+  { _id: 2, name: "Libreria Bogota", founded: 1995, country: "co" },
+  { _id: 3, name: "Libreria Munich", founded: 2001, country: "al" },
+  { _id: 4, name: "Libreria buenos aires", founded: 1932, country: "ar" },
+  { _id: 5, name: "Libreria la plata", founded: 1980, country: "ar" },
+])
+
+db.books.insertMany([
+  { _id: 1, name: "libro 1", writed: 1985, libraries: [2] },
+  { _id: 2, name: "libro 2", writed: 1990, libraries: [3,4] },
+  { _id: 3, name: "libro 3", writed: 1995, libraries: [5,1] },
+  { _id: 4, name: "libro 4", writed: 2000, libraries: [3] },
+  { _id: 5, name: "libro 5", writed: 2005, libraries: [4,5] },
+  { _id: 6, name: "libro 6", writed: 2010, libraries: [2,5] },
+  { _id: 7, name: "libro 7", writed: 2015, libraries: [3,1] },
+  { _id: 8, name: "libro 8", writed: 2020, libraries: [5,3] },
+  { _id: 9, name: "libro 9", writed: 1988, libraries: [1,4] },
+])
+
+// Query using join
+db.books.aggregate([
+ { 
+   $lookup: {
+      from: "libraries",
+      localField: "libraries",
+      foreignField: "_id",
+      as: "library_books"
+    }
+  },
+  { $match: { "library_books.country": "al" } },
+  { $project: { name: 1 } }
+])
+

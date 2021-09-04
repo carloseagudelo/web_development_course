@@ -1,0 +1,92 @@
+// Create a nested collections
+db.users.insertMany([
+  { 
+    document_type: "cc",
+    document_number: "0003433232",
+    name: 'Carlos Agudelo', 
+    age: 29,
+    address: [
+      {
+        value: "calle 19 # 32A 765",
+        city: "medellin",
+        department: "antioquia",
+        country: {
+          code: "co",
+          indicative: "57",
+          value: "colombia",
+          population: 50000000
+        }
+      },
+      {
+        value: "calle 67 # 9 09",
+        city: "bucaramanga",
+        department: "santander",
+        country: {
+          code: "co",
+          indicative: "57",
+          value: "colombia",
+          population: 50000000
+        }
+      }
+    ], 
+    registre_at: new Date('2020-03-01T08:00:00Z') 
+  },
+  { 
+    document_type: "nit",
+    document_number: "9012345434",
+    name: 'Empresa de Alemania', 
+    age: 68,
+    address: [
+      {
+        value: "calle 89 # 98 700",
+        city: "munich",
+        country: {
+          code: "al",
+          indicative: "09",
+          value: "alemania",
+          population: 15000000
+        }
+      }
+    ],
+    registre_at: new Date('2020-03-01T08:00:00Z') 
+  },
+  { 
+    document_type: "cuit",
+    document_number: "0000000000",
+    name: 'Empresa de Argentina', 
+    age: 120,
+    address: [
+      {
+        value: "calle 89 # 98 700",
+        city: "buenos aires",
+        country: {
+          code: "ar",
+          indicative: "11",
+          value: "argentina",
+          population: 35000000
+        }
+      },
+      {
+        value: "calle 89 # 98 700",
+        city: "la plata",
+        country: {
+          code: "ar",
+          indicative: "11",
+          value: "argentina",
+          population: 35000000
+        }
+      }
+    ],
+    registre_at: new Date('2020-03-01T08:00:00Z') 
+  }
+])
+
+// Search by city
+db.users.find({ address: { city: "medellin" } })
+
+// Search by country value
+db.users.find({ "address.country.value":  "argentina" })
+
+// Search by granter than 20000000 o population
+db.users.find({ "address.country.population": { $gte: 20000000 } })
+
