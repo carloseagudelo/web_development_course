@@ -14,3 +14,11 @@ All resource and guides of neccesarie components to install for folow practice s
 * **MongoDB**
 
   Ouf first subject will be NoSQL databases and we will do practices in this kind of database. SO you shoul install mongoDB following the next [steps](https://platzi.com/blog/como-instalar-mongodb-en-window-linux-y-mac/?utm_source=google&utm_medium=cpc&utm_campaign=12915366154&utm_adgroup=&utm_content=&gclsrc=aw.ds&&gclid=CjwKCAjwybyJBhBwEiwAvz4G78vAkicHfy6s6nVpDIZtEOE7Auop6rHAV4YcvM24anCpmqTbX0UCXRoC2uMQAvD_BwE). 
+
+* **MONGO ATLAS CONFIGURATION**
+
+  Follow this [video](https://www.youtube.com/watch?v=rPqRyYJmx2g&ab_channel=MongoDB) instructions to create a free account and test cluster.
+
+* **Install GIT**
+
+  Follo next [instruction](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/) that dependts your OS.

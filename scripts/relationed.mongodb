@@ -20,7 +20,7 @@ db.books.insertMany([
   { _id: 9, name: "libro 9", writed: 1988, libraries: [1,4] },
 ])
 
-// Query using join
+// Query using join using aggregation funtion.
 db.books.aggregate([
  { 
    $lookup: {
