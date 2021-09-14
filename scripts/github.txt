@@ -1,0 +1,91 @@
+// Git course to follow.
+https://github.com/gdgtoledo/curso-de-git
+
+// OS Commands
+pwd     -  Watch de current path
+ls      - List all files and directories on path
+mkdir   - make a new directory on path
+touch   - create a new file 
+rm      - delete folder or a file
+cd      - surf between folder
+history - List all used Commands
+clear   - Clean your screen
+ssh     - connect with remote server
+
+// Make a new folder
+cd ~/Documents/JavaScript/Node
+mkdir basic_app
+cd basic_app
+
+// Init npm project
+npm init
+npn install --save express
+
+// Create index.js file and put this on it!
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Server is Up!')
+})
+
+app.listen(port, () => {
+  console.log(`Server app is listening at http://localhost:${port}`)
+})
+
+// Test it using 
+node index.js
+
+// Init a repo
+git init - Show .git file and git commands works well
+
+// Associate a remote repository
+git remote add ${remote_name} ${remote_url}
+// Remove a remote reference
+git remote remove ${remote_name}
+
+// Add file to staging area to commit 
+git addd ${file_name} / . / -A
+// Remove from staging area to commit 
+git reset ${file_name} / . / -A
+
+// First commit to remote repository
+git commit -m "First commit"
+git push origin master
+
+// Make a .gitignore file
+nano .gitignore -- puts files to ignore
+git rm -r --cached .
+git add .
+git commit -m "Update .gitignore"
+git push origin master
+
+// Create a branch
+git checkout -b ${branch_name} 
+// Switch a branch
+git checkout ${branch_name} 
+
+// Using rebase to fussion seondary branch
+git rebase master - Sync secondary branch with main branch.
+
+// Change message on commit without push
+git commit --amend -m "New commit message"
+
+// Show all commits made
+git log
+
+// Rollback to specific commit
+git reset --hard ${commit_id}
+git push -f origin ${branch_name}
+
+// Cherry pick
+git cherry-pick ${commit_id_to_apply}
+
+// Stash
+git stash list              - list all stash pending
+git stash show ${stash_id}  - Show stash content
+git diff ${stash_id}        - Show the differences with current code
+git stash                   - save a new stash
+git stash apply ${stash_id} - Apply stash on code
+git stash clear             - Clear all stash saved
