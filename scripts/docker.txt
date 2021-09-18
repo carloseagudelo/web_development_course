@@ -1,0 +1,73 @@
+// Docker commands
+-------------------------- IMAGES --------------------------
+docker pull   - Download an image from docker repo
+  ex: docker pull docker/getting-started
+
+docker build  - Build a new image from dockerfile configuration
+  mkdir image_example
+  cd mkdir
+  nano Dockerfile
+  -- puts basic_docker_image
+  close and save
+  docker build -t image_example -f Dockerfile .
+
+docker images - List all images
+  ex: docker images
+
+docker rmi    - Remove image accepts image_id or image_name
+  ex: docker rmi docker/getting-started
+
+-------------------------- Contaniners --------------------------
+
+docker ps      - List all running containers with -a list running and stopped containers
+  ex: docker ps -a 
+
+docker create  - Create container
+  ex: docker create --name first_docker docker/getting-started 
+      docker ps -a to  - show create docker container
+      docker start first_docker
+
+docker run     - Create if no exist and start the container accept --run to set a specific name
+  ex: docker run docker/getting-started
+      docker run --name first_docker -d -p 80:80 docker/getting-started 
+       docker run -p 3000:80 docker/getting-started - Change port first local port second docker port
+
+dokcer exec    - Run commnads in container for once
+  ex: docker exec -it ${docker_name} /bin/sh - got into file directory container
+
+docker logs    - To show of machine logs
+  ex: docker logs -f first_docker
+
+docker volume  - Create a docker volume that use to storage data
+  ex: docker volume create data - Data is a name of volume
+      docker volume list - To know created volumes
+      docker run -it --mount source=data,destination=/mount_data docker/getting-started
+
+docker rm      - Remove container by docker name or id
+  ex: docker rm first_docker - accept id too
+
+-------------------------- Docker Compose --------------------------
+
+git clone https://github.com/codeship-library/nodejs-express-todoapp.git -b non-docker
+cd nodejs-express-todoapp
+
+// Create a Dockerfile and puts neccesaty code
+nano Dockerfile
+
+docker build . 
+// puts additional code 
+docker build .
+
+// Create a docker-compose file
+nano docker-compose.yml
+
+-------------------------- Docker Hub --------------------------
+
+// Inician sesion desde la terminal con docker
+docker login
+
+// Setean la imagen para que docker la reconozca con el formato nombre_de_usuario/nombre_del_repositorio:etiqueta
+docker tag nodejs-express-todoapp_web carloskikea/nodejs-express-todoapp_web:v1
+
+// Se sube la imagen
+docker push carloskikea/nodejs-express-todoapp_web:v1
