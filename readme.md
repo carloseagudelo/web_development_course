@@ -24,7 +24,9 @@ All resource and guides of neccesarie components to install for folow practice s
   Follow next [instruction](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/) that dependts your OS.
 
 * **Install Sprint Tool Suit**
+
   Follow next [instruction](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/) to install the IDE to wotk with sprint boots.
   
 * **Lonbok dependency**
+
   Follow next [instruction](https://projectlombok.org/setup/eclipse) to install the dependency neccessary to work with STS.
