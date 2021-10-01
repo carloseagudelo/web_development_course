@@ -25,7 +25,7 @@ All resource and guides of neccesarie components to install for folow practice s
 
 * **Install Sprint Tool Suit**
 
-  Follow next [instruction](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/) to install the IDE to wotk with sprint boots.
+  Follow next [instruction](https://www.javatpoint.com/spring-boot-download-and-install-sts-ide) to install the IDE to wotk with sprint boots.
   
 * **Lonbok dependency**
 
